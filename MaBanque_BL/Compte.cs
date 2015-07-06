@@ -14,6 +14,8 @@ namespace MaBanque_BL
         public string Proprietaire { get; private set; }
         public List<Transaction> Transactions { get; private set; }
 
+        public event MonAuditEventHandler MonAudit;
+
         public Compte(string proprietaire)
         {
             Numero = DernierNumero + 1;
@@ -31,7 +33,9 @@ namespace MaBanque_BL
         public void Crediter(double montant)
         {
             Solde += montant;
-            Transactions.Add(new Transaction(montant, TypeTransaction.Credit));
+            Transaction trans = new Transaction(montant, TypeTransaction.Debit);
+            Transactions.Add(trans);
+            OnMonAudit(trans);
         }
 
         public void Crediter(double montant, Compte Crediteur)
@@ -39,6 +43,7 @@ namespace MaBanque_BL
             if (Crediteur.Debiter(montant))
             {
                 this.Crediter(montant);
+                
             }
         }
 
@@ -49,7 +54,9 @@ namespace MaBanque_BL
             {
                 Solde -= montant;
                 reussite = true;
-                Transactions.Add(new Transaction(montant, TypeTransaction.Debit));
+                Transaction trans = new Transaction(montant, TypeTransaction.Debit);
+                Transactions.Add(trans);
+                OnMonAudit(trans);
             }
             return reussite;
         }
@@ -69,13 +76,14 @@ namespace MaBanque_BL
             return string.Format("Solde du compte de {1} est de : {0}",
                 Solde, Proprietaire);
         }
-        private void OnMontAudit()
+
+        private void OnMonAudit(Transaction trans)
         {
-            if(MonAudit !=  null)
+            if (MonAudit!=null)
             {
-               
+                MonAudit(this, new MonAuditEventArgs(this.Numero,trans.ToString()));
             }
         }
-        public event EventHandler MonAudit;
+
     }
 }
