@@ -7,6 +7,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaBanque_BL", "MaBanque_BL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaBanque_Presentation", "MaBanque_Presentation\MaBanque_Presentation.csproj", "{5B0BD476-FCAA-4B28-8993-AF835AD61FE4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{ADB04C4C-960B-4646-B9E3-66A5396053F8}"
+	ProjectSection(SolutionItems) = preProject
+		doc\TP_POO1_Simple_fichiers\colorschememapping.xml = doc\TP_POO1_Simple_fichiers\colorschememapping.xml
+		doc\TP_POO1_Simple_fichiers\filelist.xml = doc\TP_POO1_Simple_fichiers\filelist.xml
+		doc\TP_POO1_Simple_fichiers\image001.png = doc\TP_POO1_Simple_fichiers\image001.png
+		doc\TP_POO1_Simple_fichiers\themedata.thmx = doc\TP_POO1_Simple_fichiers\themedata.thmx
+		doc\TP_POO1_Simple.htm = doc\TP_POO1_Simple.htm
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TP_POO1_Simple_fichiers", "TP_POO1_Simple_fichiers", "{FC1CF389-1DC8-47C3-A1DB-88E5ED5A9DC0}"
+	ProjectSection(SolutionItems) = preProject
+		doc\TP_POO1_Simple_fichiers\colorschememapping.xml = doc\TP_POO1_Simple_fichiers\colorschememapping.xml
+		doc\TP_POO1_Simple_fichiers\filelist.xml = doc\TP_POO1_Simple_fichiers\filelist.xml
+		doc\TP_POO1_Simple_fichiers\image001.png = doc\TP_POO1_Simple_fichiers\image001.png
+		doc\TP_POO1_Simple_fichiers\themedata.thmx = doc\TP_POO1_Simple_fichiers\themedata.thmx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +41,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FC1CF389-1DC8-47C3-A1DB-88E5ED5A9DC0} = {ADB04C4C-960B-4646-B9E3-66A5396053F8}
 	EndGlobalSection
 EndGlobal
