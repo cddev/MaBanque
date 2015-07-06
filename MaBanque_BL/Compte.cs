@@ -69,6 +69,13 @@ namespace MaBanque_BL
             return string.Format("Solde du compte de {1} est de : {0}",
                 Solde, Proprietaire);
         }
-
+        private void OnMontAudit()
+        {
+            if(MonAudit !=  null)
+            {
+               
+            }
+        }
+        public event EventHandler MonAudit;
     }
 }
