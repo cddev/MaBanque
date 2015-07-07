@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MaBanque_BL
 {
     public abstract class Compte
     {
         public static int DernierNumero { get; private set; }
-
         public int Numero { get; private set; }
-
         public double Solde { get; protected set; }
-
         public string Proprietaire { get; private set; }
-
         public List<Transaction> Transactions { get; private set; }
 
         public event MonAuditEventHandler MonAudit;
@@ -24,9 +24,10 @@ namespace MaBanque_BL
             Transactions = new List<Transaction>();
         }
 
-        public Compte(string proprietaire, double solde) : this(proprietaire)
+        public Compte (string proprietaire, double solde):this(proprietaire)
         {
             Solde = solde;
+            
         }
 
         public void Crediter(double montant)
@@ -42,13 +43,14 @@ namespace MaBanque_BL
             if (Crediteur.Debiter(montant))
             {
                 this.Crediter(montant);
+                
             }
         }
 
         public virtual bool Debiter(double montant)
         {
             bool reussite = false;
-            if (montant <= Solde)
+            if (montant<=Solde)
             {
                 Solde -= montant;
                 reussite = true;
@@ -77,10 +79,11 @@ namespace MaBanque_BL
 
         private void OnMonAudit(Transaction trans)
         {
-            if (MonAudit != null)
+            if (MonAudit!=null)
             {
-                MonAudit(this, new MonAuditEventArgs(this.Numero, trans.ToString()));
+                MonAudit(this, new MonAuditEventArgs(this.Numero,trans.ToString()));
             }
         }
+
     }
 }

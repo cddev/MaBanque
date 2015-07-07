@@ -1,23 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.IO;
+using System.Collections;
 
 namespace MaBanque_BL
 {
-    internal class Banque
+    public class Banque <TCompte> : IEnumerable<TCompte> where TCompte: Compte
     {
+        #region Constructeurs
         public Banque()
         {
             isAudit = false;
+            Comptes = new List<TCompte>();
         }
+        #endregion
 
-        public List<Compte> Comptes { get; private set; }
-
+        #region Propriétés
+        public List<TCompte> Comptes { get; private set; }
+        
         public string Nom { get; set; }
+        #endregion
 
-        public void AddCompte(Compte compte)
+        #region Méthodes Métiers
+        public void AddCompte(TCompte compte)
         {
             Comptes.Add(compte);
         }
+
 
         private bool isAudit;
 
@@ -26,7 +38,7 @@ namespace MaBanque_BL
             if (!isAudit)
             {
                 isAudit = true;
-                foreach (Compte cpte in Comptes)
+                foreach (TCompte cpte in Comptes)
                 {
                     cpte.MonAudit += Cpte_MonAudit;
                 }
@@ -34,9 +46,10 @@ namespace MaBanque_BL
             else
             {
                 isAudit = false;
-                foreach (Compte cpte in Comptes)
+                foreach (TCompte cpte in Comptes)
                 {
                     cpte.MonAudit -= Cpte_MonAudit;
+
                 }
             }
         }
@@ -49,6 +62,34 @@ namespace MaBanque_BL
                 writer.WriteLine("Num Cpte :" + e.NumCpte + ", " + e.Description);
                 writer.Close();
             }
+        }
+        #endregion
+
+        #region Indexeur
+        public TCompte this[int index]
+        {
+            get
+            {
+                return Comptes.Find(cpt => cpt.Numero==index);
+                //return Comptes.Where(cpt => cpt.Numero == index).Select(cpt => cpt).FirstOrDefault();
+            }
+        }
+
+        public TCompte this[string index]
+        {
+            get { return Comptes.Find(cpt => cpt.Proprietaire == index); }
+        }
+        #endregion
+
+
+        public IEnumerator<TCompte> GetEnumerator()
+        {
+            return Comptes.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+           return GetEnumerator();
         }
     }
 }

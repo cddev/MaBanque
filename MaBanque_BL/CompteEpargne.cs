@@ -1,6 +1,12 @@
-﻿namespace MaBanque_BL
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MaBanque_BL
 {
-    internal class CompteEpargne : Compte
+    public class CompteEpargne : Compte
     {
         public double TauxAbondement { get; private set; }
 

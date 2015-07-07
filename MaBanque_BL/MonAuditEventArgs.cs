@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MaBanque_BL
 {
@@ -13,7 +17,6 @@ namespace MaBanque_BL
         }
 
         public int NumCpte { get; protected set; }
-
         public string Description { get; protected set; }
     }
 }
